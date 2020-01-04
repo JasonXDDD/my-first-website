@@ -52,10 +52,25 @@
 
         <div>
           <h2>456</h2>
-          <p style="height: 30000px;">
+          <p>
             Hello World World World World World World World World World World
             World World
           </p>
+        </div>
+
+        <hr style="margin: 2rem 0">
+        <div>
+          <h2>Todo List</h2>
+          <div style="margin-top: 1rem; width: 500px; display: flex;">
+            <input type="text" id="thing" style="padding: .5rem; border-radius: 0.5rem; margin-right: .5rem; border: none; width: 100%;">
+            <button id="submit" style="padding: .5rem; border-radius: 0.5rem; border: none; margin-left: auto;">Submit</button>
+          </div>
+
+          <div style="margin-top: 1rem; margin-left: 1rem;">
+            <ul id="todo">
+              
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -74,6 +89,7 @@
         font-size: 14px;
         color: #999;
         background: rgb(45, 45, 45);
+        
       }
 
       * {
@@ -143,6 +159,32 @@
     <script src="./assets/js/script.js"></script>
     <script>
       // js
+      var thing = document.getElementById("thing")
+      var button = document.getElementById("submit")
+      var todo = document.getElementById("todo")
+      console.log(thing, button, todo)
+
+      function setTodo(){
+        console.log(thing.value)
+        todo.innerHTML += `
+          <li>
+            <button style="padding: 0 .3rem"> Click </button>
+            ${thing.value}
+          </li>
+        `
+
+        localStorage.setItem("todo", todo.innerHTML)
+      }
+
+      button.onclick = setTodo
+
+
+      function initData(){
+        todo.innerHTML = localStorage.getItem("todo")
+      }
+
+      initData()
+
     </script>
   </body>
 </html>
